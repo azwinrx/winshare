@@ -127,8 +127,8 @@ export default class StoryDetailPage {
             .bindPopup(popupContent, {
               maxWidth: 300,
               maxHeight: 300,
-              className: 'story-popup',
-              autoClose: false
+              className: "story-popup",
+              autoClose: false,
             })
             .openPopup();
         } catch (error) {

@@ -16,11 +16,11 @@ export const createMap = (elementId, options = {}) => {
 
 export const addMarker = (map, lat, lon, options = {}) => {
   const marker = L.marker([lat, lon], options).addTo(map);
-  
+
   // Tambahkan popup ke marker jika ada
   if (options.popup) {
     marker.bindPopup(options.popup);
-    
+
     // Jika autoOpenPopup true, buka popup secara otomatis
     if (options.autoOpenPopup) {
       marker.openPopup();

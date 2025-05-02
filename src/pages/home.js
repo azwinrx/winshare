@@ -190,8 +190,12 @@ export default class HomePage {
             <img src="${story.photoUrl}" 
                  alt="Story photo" 
                  style="width:200px;max-height:150px;object-fit:cover;margin:8px 0;">
-            <p>${story.description.substring(0, 100)}${story.description.length > 100 ? '...' : ''}</p>
-            <a href="#/story/${story.id}" class="btn-primary" style="display:inline-block;margin-top:8px;">
+            <p>${story.description.substring(0, 100)}${
+          story.description.length > 100 ? "..." : ""
+        }</p>
+            <a href="#/story/${
+              story.id
+            }" class="btn-primary" style="display:inline-block;margin-top:8px;">
               <i class="fas fa-angle-right"></i> Lihat Detail
             </a>
           </div>
@@ -202,11 +206,11 @@ export default class HomePage {
           .bindPopup(popupContent, {
             maxWidth: 300,
             maxHeight: 300,
-            className: 'story-popup'
+            className: "story-popup",
           });
 
         // Event listener untuk marker
-        marker.on('click', () => {
+        marker.on("click", () => {
           marker.openPopup();
         });
 

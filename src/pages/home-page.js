@@ -17,7 +17,9 @@ export default class HomePage {
     return `
       <section class="container" id="main-content">
         <div class="welcome-user">
-          <h2><i class="fas fa-user"></i> Selamat datang, ${userName || "User"}!</h2>
+          <h2><i class="fas fa-user"></i> Selamat datang, ${
+            userName || "User"
+          }!</h2>
         </div>
         
         <div class="stories-header">
@@ -54,7 +56,8 @@ export default class HomePage {
       );
 
       L.tileLayer(CONFIG.DEFAULT_MAP_TILE, {
-        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        attribution:
+          '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
         maxZoom: 19,
       }).addTo(this.map);
 
@@ -74,16 +77,16 @@ export default class HomePage {
   }
 
   _clearMarkers() {
-    this.markers.forEach(marker => marker.remove());
+    this.markers.forEach((marker) => marker.remove());
     this.markers = [];
   }
 
   _addStoryMarkers(stories) {
     this._clearMarkers();
-    
+
     const markersGroup = L.featureGroup();
 
-    stories.forEach(story => {
+    stories.forEach((story) => {
       if (story.lat && story.lon) {
         const popupContent = `
           <div class="map-popup">
@@ -91,7 +94,9 @@ export default class HomePage {
             <img src="${story.photoUrl}" 
                  alt="Story photo" 
                  style="width:200px;max-height:150px;object-fit:cover;margin:8px 0;">
-            <p>${story.description.substring(0, 100)}${story.description.length > 100 ? '...' : ''}</p>
+            <p>${story.description.substring(0, 100)}${
+          story.description.length > 100 ? "..." : ""
+        }</p>
             <a href="#/story/${story.id}" class="btn-primary">
               <i class="fas fa-angle-right"></i> Lihat Detail
             </a>
@@ -102,7 +107,7 @@ export default class HomePage {
           .bindPopup(popupContent, {
             maxWidth: 300,
             maxHeight: 300,
-            className: 'story-popup'
+            className: "story-popup",
           })
           .addTo(this.map);
 
@@ -125,7 +130,8 @@ export default class HomePage {
     if (!container) return;
 
     container.innerHTML = stories
-      .map(story => `
+      .map(
+        (story) => `
         <div class="story-item">
           <img src="${story.photoUrl}" 
                alt="Foto oleh ${story.name}: ${story.description}"
@@ -134,12 +140,15 @@ export default class HomePage {
             <h2>${story.name}</h2>
             <p class="story-description">${story.description}</p>
             <p class="created-at">
-              <i class="fas fa-calendar"></i> ${this.formatDate(story.createdAt)}
+              <i class="fas fa-calendar"></i> ${this.formatDate(
+                story.createdAt
+              )}
             </p>
             <a href="#/story/${story.id}" class="btn-primary">Lihat Detail</a>
           </div>
         </div>
-      `)
+      `
+      )
       .join("");
   }
 
