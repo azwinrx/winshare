@@ -184,15 +184,32 @@ export default class HomePage {
     this.currentMarkers = stories
       .filter((story) => story.lat && story.lon)
       .map((story) => {
-        const marker = L.marker([story.lat, story.lon]).addTo(this.mainMap)
-          .bindPopup(`
-            <div class="map-popup">
-              <h3>${story.name}</h3>
-              <img src="${story.photoUrl}" alt="${story.description}" style="max-width: 200px;">
-              <p>${story.description}</p>
-              <a href="#/story/${story.id}">Lihat Detail</a>
-            </div>
-          `);
+        const popupContent = `
+          <div class="map-popup">
+            <h3>${story.name}</h3>
+            <img src="${story.photoUrl}" 
+                 alt="Story photo" 
+                 style="width:200px;max-height:150px;object-fit:cover;margin:8px 0;">
+            <p>${story.description.substring(0, 100)}${story.description.length > 100 ? '...' : ''}</p>
+            <a href="#/story/${story.id}" class="btn-primary" style="display:inline-block;margin-top:8px;">
+              <i class="fas fa-angle-right"></i> Lihat Detail
+            </a>
+          </div>
+        `;
+
+        const marker = L.marker([story.lat, story.lon])
+          .addTo(this.mainMap)
+          .bindPopup(popupContent, {
+            maxWidth: 300,
+            maxHeight: 300,
+            className: 'story-popup'
+          });
+
+        // Event listener untuk marker
+        marker.on('click', () => {
+          marker.openPopup();
+        });
+
         return marker;
       });
 

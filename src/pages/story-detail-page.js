@@ -114,9 +114,22 @@ export default class StoryDetailPage {
               '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
           }).addTo(map);
 
+          const popupContent = `
+            <div class="map-popup">
+              <h3>${story.name}</h3>
+              <img src="${story.photoUrl}" alt="Story photo" style="width:200px;max-height:150px;object-fit:cover;margin:8px 0;">
+              <p>${story.description}</p>
+            </div>
+          `;
+
           L.marker([story.lat, story.lon])
             .addTo(map)
-            .bindPopup(`<b>${story.name}</b><br>${story.description}`)
+            .bindPopup(popupContent, {
+              maxWidth: 300,
+              maxHeight: 300,
+              className: 'story-popup',
+              autoClose: false
+            })
             .openPopup();
         } catch (error) {
           console.error("Error initializing map:", error);
