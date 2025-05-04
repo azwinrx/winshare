@@ -12,7 +12,7 @@ export default class HomePresenter {
   async loadStories(loadMore = false) {
     try {
       if (this.isLoading || (!loadMore && !this.hasMorePages)) return;
-      
+
       const token = localStorage.getItem("token");
       if (!token) {
         window.location.hash = "/login";
@@ -30,7 +30,7 @@ export default class HomePresenter {
 
       const newStories = response.listStory || [];
       this.hasMorePages = newStories.length > 0;
-      
+
       if (loadMore) {
         this.stories = [...this.stories, ...newStories];
         this.currentPage = page;

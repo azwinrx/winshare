@@ -84,9 +84,9 @@ export default class HomePage {
   }
 
   _initLoadMoreButton() {
-    const loadMoreBtn = document.getElementById('load-more');
+    const loadMoreBtn = document.getElementById("load-more");
     if (loadMoreBtn) {
-      loadMoreBtn.addEventListener('click', async () => {
+      loadMoreBtn.addEventListener("click", async () => {
         this._setLoadingState(true);
         await this.presenter.loadStories(true);
         this._setLoadingState(false);
@@ -95,20 +95,20 @@ export default class HomePage {
   }
 
   _setLoadingState(isLoading) {
-    const loadMoreBtn = document.getElementById('load-more');
+    const loadMoreBtn = document.getElementById("load-more");
     if (!loadMoreBtn) return;
 
-    const spinner = loadMoreBtn.querySelector('.fa-spinner');
-    const text = loadMoreBtn.querySelector('span');
+    const spinner = loadMoreBtn.querySelector(".fa-spinner");
+    const text = loadMoreBtn.querySelector("span");
 
     if (isLoading) {
       loadMoreBtn.disabled = true;
-      spinner.style.display = 'inline-block';
-      text.textContent = 'Memuat...';
+      spinner.style.display = "inline-block";
+      text.textContent = "Memuat...";
     } else {
       loadMoreBtn.disabled = false;
-      spinner.style.display = 'none';
-      text.textContent = 'Muat Story Lainnya';
+      spinner.style.display = "none";
+      text.textContent = "Muat Story Lainnya";
     }
   }
 
@@ -188,9 +188,9 @@ export default class HomePage {
       .join("");
 
     // Show/hide load more button based on whether there are more pages
-    const loadMoreBtn = document.getElementById('load-more');
+    const loadMoreBtn = document.getElementById("load-more");
     if (loadMoreBtn) {
-      loadMoreBtn.style.display = hasMorePages ? 'block' : 'none';
+      loadMoreBtn.style.display = hasMorePages ? "block" : "none";
     }
   }
 
