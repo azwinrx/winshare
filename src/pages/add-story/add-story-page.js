@@ -1,7 +1,6 @@
-import AddStoryPresenter from "../presenters/add-story-presenter.js";
-import NavigationHelper from "../utils/navigation-helper.js";
-import { createMap, addMarker, getUserLocation } from "../utils/maps-helper.js";
-import CONFIG from "../config/config.js";
+import AddStoryPresenter from "./add-story-presenter.js";
+import NavigationHelper from "../../utils/navigation-helper.js";
+import CONFIG from "../../config/config.js";
 
 export default class AddStoryPage {
   constructor() {

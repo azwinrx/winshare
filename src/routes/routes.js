@@ -1,9 +1,9 @@
-import HomePage from "../pages/home-page.js";
-import AddStoryPage from "../pages/add-story-page.js";
-import LoginPage from "../pages/login-page.js";
-import RegisterPage from "../pages/register-page.js";
-import AboutPage from "../pages/about-page.js";
-import StoryDetailPage from "../pages/story-detail-page.js";
+import HomePage from "../pages/home/home-page.js";
+import AddStoryPage from "../pages/add-story/add-story-page.js";
+import LoginPage from "../pages/auth/login/login-page.js";
+import RegisterPage from "../pages/auth/register/register-page.js";
+import AboutPage from "../pages/about/about-page.js";
+import StoryDetailPage from "../pages/story-detail/story-detail-page.js";
 
 const routes = {
   "/": HomePage,

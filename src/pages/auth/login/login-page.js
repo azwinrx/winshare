@@ -1,7 +1,11 @@
-import { login } from "../api/api.js";
-import NavigationHelper from "../utils/navigation-helper.js";
+import LoginPresenter from "./login-presenter.js";
+import NavigationHelper from "../../../utils/navigation-helper.js";
 
 export default class LoginPage {
+  constructor() {
+    this.presenter = new LoginPresenter(this);
+  }
+
   async render() {
     return `
       <section class="auth-container" id="main-content">
@@ -27,22 +31,20 @@ export default class LoginPage {
   }
 
   async afterRender() {
-    // Menggunakan NavigationHelper untuk pengaturan navigasi
     NavigationHelper.setupUnauthenticatedNavigation();
 
     const form = document.querySelector("#login-form");
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
-      const email = form.email.value;
-      const password = form.password.value;
-      const response = await login({ email, password });
-      if (!response.error) {
-        localStorage.setItem("token", response.loginResult.token);
-        localStorage.setItem("userName", response.loginResult.name);
-        window.location.hash = "/";
-      } else {
-        alert(response.message);
-      }
+      await this.presenter.login(form.email.value, form.password.value);
     });
+  }
+
+  showError(message) {
+    alert(message);
+  }
+
+  redirectToHome() {
+    window.location.hash = "/";
   }
 }

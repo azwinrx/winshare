@@ -1,6 +1,11 @@
-import NavigationHelper from "../utils/navigation-helper.js";
+import AboutPresenter from "./about-presenter.js";
+import NavigationHelper from "../../utils/navigation-helper.js";
 
 export default class AboutPage {
+  constructor() {
+    this.presenter = new AboutPresenter(this);
+  }
+
   async render() {
     return `
       <section class="about-page" id="main-content">
@@ -87,6 +92,10 @@ export default class AboutPage {
   }
 
   async afterRender() {
+    this.presenter.initialize();
+  }
+
+  setupView() {
     NavigationHelper.setupAuthenticatedNavigation();
   }
 }

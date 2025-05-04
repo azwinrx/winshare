@@ -1,7 +1,11 @@
-import { register } from "../api/api.js";
-import NavigationHelper from "../utils/navigation-helper.js";
+import RegisterPresenter from "./register-presenter.js";
+import NavigationHelper from "../../../utils/navigation-helper.js";
 
 export default class RegisterPage {
+  constructor() {
+    this.presenter = new RegisterPresenter(this);
+  }
+
   async render() {
     return `
       <section class="auth-container" id="main-content">
@@ -43,17 +47,19 @@ export default class RegisterPage {
         password: form.password.value,
       };
 
-      try {
-        const response = await register(formData);
-        if (!response.error) {
-          alert("Registrasi berhasil! Silakan login.");
-          window.location.hash = "/login";
-        } else {
-          alert(response.message);
-        }
-      } catch (error) {
-        alert("Terjadi kesalahan saat registrasi. Silakan coba lagi.");
-      }
+      await this.presenter.register(formData);
     });
+  }
+
+  showError(message) {
+    alert(message);
+  }
+
+  showSuccess() {
+    alert("Registrasi berhasil! Silakan login.");
+  }
+
+  redirectToLogin() {
+    window.location.hash = "/login";
   }
 }

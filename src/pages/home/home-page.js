@@ -1,8 +1,8 @@
 // src/scripts/pages/home/home-page.js
-import HomePresenter from "../presenters/home-presenter.js";
-import NavigationHelper from "../utils/navigation-helper.js";
-import { setupMapAccessibility } from "../utils/accessibility.js";
-import CONFIG from "../config/config.js";
+import HomePresenter from "./home-presenter.js";
+import NavigationHelper from "../../utils/navigation-helper.js";
+import { setupMapAccessibility } from "../../utils/accessibility.js";
+import CONFIG from "../../config/config.js";
 
 export default class HomePage {
   constructor() {

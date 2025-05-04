@@ -1,4 +1,4 @@
-import { addStory } from "../api/api.js";
+import { addStory } from "../../api/api.js";
 
 export default class AddStoryPresenter {
   constructor(view) {
