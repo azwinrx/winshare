@@ -35,6 +35,12 @@ export default class HomePage {
 
         <h2 class="stories-title">Daftar Story</h2>
         <div id="story-list" class="story-grid"></div>
+        <div class="load-more-container">
+          <button id="load-more" class="btn-primary" style="display: none;">
+            <i class="fas fa-spinner fa-spin" style="display: none;"></i>
+            <span>Muat Story Lainnya</span>
+          </button>
+        </div>
       </section>
     `;
   }
@@ -42,7 +48,8 @@ export default class HomePage {
   async afterRender() {
     NavigationHelper.setupAuthenticatedNavigation();
     this._initMainMap();
-    this.presenter.loadStories();
+    this._initLoadMoreButton();
+    await this.presenter.loadStories();
   }
 
   _initMainMap() {
@@ -73,6 +80,35 @@ export default class HomePage {
       }
     } catch (error) {
       console.error("Error initializing map:", error);
+    }
+  }
+
+  _initLoadMoreButton() {
+    const loadMoreBtn = document.getElementById('load-more');
+    if (loadMoreBtn) {
+      loadMoreBtn.addEventListener('click', async () => {
+        this._setLoadingState(true);
+        await this.presenter.loadStories(true);
+        this._setLoadingState(false);
+      });
+    }
+  }
+
+  _setLoadingState(isLoading) {
+    const loadMoreBtn = document.getElementById('load-more');
+    if (!loadMoreBtn) return;
+
+    const spinner = loadMoreBtn.querySelector('.fa-spinner');
+    const text = loadMoreBtn.querySelector('span');
+
+    if (isLoading) {
+      loadMoreBtn.disabled = true;
+      spinner.style.display = 'inline-block';
+      text.textContent = 'Memuat...';
+    } else {
+      loadMoreBtn.disabled = false;
+      spinner.style.display = 'none';
+      text.textContent = 'Muat Story Lainnya';
     }
   }
 
@@ -121,7 +157,7 @@ export default class HomePage {
     }
   }
 
-  displayStories(stories) {
+  displayStories(stories, hasMorePages) {
     // Update markers on map
     this._addStoryMarkers(stories);
 
@@ -150,6 +186,12 @@ export default class HomePage {
       `
       )
       .join("");
+
+    // Show/hide load more button based on whether there are more pages
+    const loadMoreBtn = document.getElementById('load-more');
+    if (loadMoreBtn) {
+      loadMoreBtn.style.display = hasMorePages ? 'block' : 'none';
+    }
   }
 
   formatDate(dateString) {

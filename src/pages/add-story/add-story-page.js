@@ -25,9 +25,9 @@ export default class AddStoryPage {
           
           <div class="photo-input-container">
             <label>Foto</label>
-            <div class="photo-actions">
-              <input type="file" id="photo" name="photo" accept="image/*" class="file-input">
-              <button type="button" id="camera-btn" class="camera-toggle-btn">
+            <div class="photo-actions" style="height: 75px;">
+              <input type="file" id="photo" name="photo" accept="image/*" class="file-input" style="height: 50px;">
+              <button type="button" id="camera-btn" class="camera-toggle-btn" style="height: 50px;">
                 <i class="fas fa-camera"></i> Gunakan Kamera
               </button>
             </div>

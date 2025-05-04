@@ -31,10 +31,10 @@ const register = async ({ name, email, password }) => {
   }
 };
 
-const getStories = async () => {
+const getStories = async (page = 1, size = 10) => {
   try {
     const response = await Auth.authenticatedFetch(
-      `${CONFIG.BASE_URL}/stories`
+      `${CONFIG.BASE_URL}/stories?page=${page}&size=${size}`
     );
     return response.json();
   } catch (error) {

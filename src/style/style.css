@@ -28,7 +28,6 @@ body {
   padding: 1rem;
 }
 
-/* Skip Link */
 .skip-to-content {
   position: absolute;
   top: -40px;
@@ -43,7 +42,6 @@ body {
   top: 0;
 }
 
-/* Header */
 .main-header {
   background-color: white;
   box-shadow: var(--shadow);
@@ -53,7 +51,6 @@ body {
   align-items: center;
 }
 
-/* Buttons */
 #logout-button {
   all: unset;
   cursor: pointer;
@@ -82,7 +79,6 @@ body {
   color: var(--text-color);
 }
 
-/* Navigation */
 .nav-list {
   display: flex;
   gap: 1.5rem;
@@ -108,7 +104,6 @@ body {
   color: var(--primary-color);
 }
 
-/* Forms */
 .form-group {
   margin-bottom: 1rem;
 }
@@ -128,10 +123,9 @@ body {
   font-family: inherit;
 }
 
-/* Story Cards */
 .story-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Changed to exactly 3 columns */
+  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
   margin-top: 2rem;
   padding: 0 1rem;
@@ -155,7 +149,7 @@ body {
 
 .story-item img {
   width: 100%;
-  height: 220px; /* Fixed height for consistency */
+  height: 220px;
   object-fit: cover;
 }
 
@@ -182,7 +176,6 @@ body {
   margin-bottom: auto;
 }
 
-/* Maps */
 .story-map {
   border-radius: var(--border-radius);
   overflow: hidden;
@@ -196,7 +189,6 @@ body {
   overflow: hidden;
 }
 
-/* Camera UI */
 .camera-container {
   margin: 1rem 0;
   position: relative;
@@ -214,7 +206,6 @@ body {
   gap: 1rem;
 }
 
-/* Buttons */
 .btn-primary {
   background-color: var(--primary-color);
   color: white;
@@ -233,7 +224,6 @@ body {
   background-color: #2980b9;
 }
 
-/* Responsive Design */
 @media (max-width: 1200px) {
   .story-grid {
     grid-template-columns: repeat(3, 1fr);
@@ -268,10 +258,12 @@ body {
     padding: 2rem;
     box-shadow: var(--shadow);
     transition: right 0.3s;
+    z-index: 999;
   }
 
   .navigation-drawer.open {
     right: 0;
+    z-index: 999;
   }
 
   .nav-list {
@@ -280,7 +272,6 @@ body {
   }
 }
 
-/* Auth Pages */
 .auth-container {
   display: flex;
   justify-content: center;
@@ -297,7 +288,6 @@ body {
   max-width: 400px;
 }
 
-/* Loading and Error States */
 .loading-indicator {
   display: flex;
   justify-content: center;
@@ -312,7 +302,6 @@ body {
   padding: 1rem;
 }
 
-/* Accessibility Focus Styles */
 *:focus {
   outline: 3px solid var(--primary-color);
   outline-offset: 2px;
@@ -322,7 +311,6 @@ body {
   outline: 3px solid var(--primary-color);
 }
 
-/* About Page Styles */
 .hero-section {
   background: linear-gradient(135deg, var(--primary-color), #2980b9);
   color: white;
@@ -476,7 +464,6 @@ body {
   color: #2980b9;
 }
 
-/* Responsive adjustments for About page */
 @media (max-width: 768px) {
   .hero-section {
     padding: 3rem 0;
@@ -501,7 +488,6 @@ body {
   }
 }
 
-/* Story Detail Page */
 .story-detail-page {
   padding: 2rem 1rem;
   background-color: var(--background-color);
@@ -648,7 +634,6 @@ body {
   margin-bottom: 1rem;
 }
 
-/* Responsive adjustments for Story Detail page */
 @media (max-width: 768px) {
   .story-header-section {
     flex-direction: column;
@@ -669,7 +654,6 @@ body {
   }
 }
 
-/* Map Popup Styles */
 .story-popup .leaflet-popup-content-wrapper {
   background: white;
   border-radius: 8px;
@@ -715,7 +699,6 @@ body {
   background: #2980b9;
 }
 
-/* Main Map Styles */
 .map-section {
   margin: 2rem 0;
   background: white;
@@ -737,7 +720,6 @@ body {
   font-size: 1.5rem;
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
   .main-map-container {
     height: 400px;
@@ -767,17 +749,15 @@ body {
   padding: 0 15px;
 }
 
-/* Khusus untuk tombol dan link di dalam .map-popup agar tidak terlalu besar */
 .map-popup a {
   min-height: 50px;
   padding: 0 10px;
 }
 
-/* Memastikan tombol drawer memiliki ukuran yang cukup */
 .drawer-button {
   width: 50px;
   height: 50px;
-  display: none; /* tetap hidden by default seperti sebelumnya */
+  display: none;
 }
 
 @media (max-width: 768px) {
@@ -786,4 +766,28 @@ body {
     align-items: center;
     justify-content: center;
   }
+}
+
+.load-more-container {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+#load-more {
+  min-width: 200px;
+  margin: 20px 0 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 500;
+}
+
+#load-more:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+#load-more .fa-spinner {
+  font-size: 1.1rem;
 }
